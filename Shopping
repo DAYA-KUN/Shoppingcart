@@ -56,7 +56,6 @@ class ShoppingCart {
 
     double calculateTotalPrice() {
         double totalPrice = 0;
-        // Calculate total price after applying discounts
         for (Product product : products) {
             double productPrice = product.price;
             for (Discount discount : getEligibleDiscounts(product.productId)) {
@@ -78,7 +77,6 @@ class ShoppingCart {
 
     private List<Discount> getEligibleDiscounts(int productId) {
         List<Discount> eligibleDiscounts = new ArrayList<>();
-        // Implement logic to filter eligible discounts for the given product based on effective dates
         for (Discount discount : getDiscounts()) {
             if (discount.productIds.contains(productId)) {
                 eligibleDiscounts.add(discount);
@@ -88,20 +86,14 @@ class ShoppingCart {
     }
 
     private boolean isDiscountValid(String effectiveEndDate) {
-        // Implement logic to check if the discount is still valid based on the effective end date
-        // For simplicity, let's assume all discounts are still valid
-        // In a real-world scenario, you would need to compare the current date with the effective end date
         return true;
     }
 
     private int getProductQuantity(int productId) {
-        // Implement logic to get the quantity of the given product in the shopping cart
         return productQuantities.getOrDefault(productId, 0);
     }
 
     private List<Discount> getDiscounts() {
-        // Implement logic to fetch all available discounts from the database or any data source
-        // For simplicity, let's assume we have hardcoded the discounts here
         List<Discount> discounts = new ArrayList<>();
         List<Integer> productIds1 = new ArrayList<>();
         productIds1.add(1);
@@ -150,8 +142,6 @@ public class Main {
                 case 3:
                     System.out.println("Enter the product ID: ");
                     int productId = scanner.nextInt();
-                    // You can implement product lookup based on the entered product ID
-                    // For simplicity, let's assume the product exists and add it to the cart
                     if (productId == 1) {
                         cart.addProduct(product1);
                     } else if (productId == 2) {
