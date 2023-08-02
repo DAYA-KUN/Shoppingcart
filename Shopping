@@ -48,9 +48,22 @@ class ShoppingCart {
         productQuantities.put(product.productId, productQuantities.getOrDefault(product.productId, 0) + 1);
     }
 
+
     void displayProducts() {
         for (Product product : products) {
             System.out.println(product.name + " - " + product.price + " per " + product.unit);
+            List<Discount> applicableDiscounts = getEligibleDiscounts(product.productId);
+            if (!applicableDiscounts.isEmpty()) {
+                System.out.println("Applicable Discounts:");
+                for (Discount discount : applicableDiscounts) {
+                    System.out.println("Discount ID: " + discount.discountId);
+                    System.out.println("Discount Name: " + discount.name);
+                    System.out.println("Effective Start Date: " + discount.effectiveStartDate);
+                    System.out.println("Effective End Date: " + (discount.effectiveEndDate != null ? discount.effectiveEndDate : "N/A"));
+                }
+            } else {
+                System.out.println("No Discounts Applicable for this Product.");
+            }
         }
     }
 
